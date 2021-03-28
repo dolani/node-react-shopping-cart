@@ -2,8 +2,12 @@ const express = require('express');
 const cors = require('cors');
 // const bodyParser = require('body-parser');
 const morgan = require('morgan');
-
 const app = express();
+
+require("./config/mongoose.js")(app);
+require("./app/routerHandler")(app);
+
+app.use('/files', express.static("files"));
 app.use(morgan('dev'));
 app.use(cors());
 app.use(express.json());
